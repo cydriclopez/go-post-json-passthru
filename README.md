@@ -19,12 +19,12 @@ Oftentimes in our Angular web app we need to push JSON data to the server. Worki
 
 This tutorial builds from the previous tutorials. It is good to go thru them in sequence especially if you are new to Angular, Postgresql, and the Go programming language.
 
-In the current iteration of this code, the tree component data is obtained from a static file [src/client/src/assets/data/files.json](https://github.com/cydriclopez/go-post-json-passthru/blob/main/src/client/src/assets/data/files.json). Our goal is to push this data to a Go controller which, for now, merely prints the JSON data.
+In the current iteration of this code, the tree component gets its data from a static file [src/client/src/assets/data/files.json](https://github.com/cydriclopez/go-post-json-passthru/blob/main/src/client/src/assets/data/files.json). Our goal, in this tutorial, is to push this data to a Go controller which, for now, merely prints the JSON data.
 
 In the next tutorial we will call a Postgresql stored-function that walks-thru this JSON tree data and saves it into records in a table. In this tutorial we will cover just the very basics of JSON data processing using the tree component JSON data.
 
 This is now our ***Tree demo*** app. Note that we have enabled the ***Save*** button. This ***Save*** button sends the tree JSON data to our server-side Go controller that for now just prints it on the console.<br/>
-<img src="images/primeng-tree-demo2.png" width="650"/>
+<kbd><img src="images/primeng-tree-demo2.png" width="650"/></kbd>
 
 
 ### 2. Why passthru controller
