@@ -44,7 +44,7 @@ I assume that you have a [working Angular](https://github.com/cydriclopez/docker
 
 ### 4. Clone this repo and run "npm install"
 
-#### 4.1 Clone this repo then change into the repo folder to run "npm install".
+#### 4.1 Clone this repo then change into the repo folder.
 
 You can follow the commands below. You may have to adjust according to your own chosen directory structure.
 
@@ -82,7 +82,7 @@ Reload the ***~/.bashrc*** file using the command: ***source ~/.bashrc***.
 
 #### 4.3 Run the ***Angular*** alias
 
-Follow the commands below to run the ***angular*** alias. The prompt should change the accordingly to notify you that you are in the Angular docker container.
+Follow the commands below to run the ***angular*** alias. The prompt should change accordingly to notify you that you are in the Angular docker container.
 
 ```bash
 user1@penguin:~/Projects/go-post-json-passthru$
