@@ -8,10 +8,11 @@
 1. Introduction
 2. Why passthru controller
 3. Prerequisites
-4. Clone this repo
-5. Client-side Angular code
-6. Server-side Go code
-7. Conclusion
+4. Clone this repo and run "npm install"
+5. Compile Go server-side code
+6. Client-side Angular code
+7. Server-side Go code
+8. Conclusion
 
 ### 1. Introduction
 
@@ -41,26 +42,124 @@ As mentioned before, this tutorial builds from the previous tutorials. I suggest
 
 I assume that you have a [working Angular](https://github.com/cydriclopez/docker-ng-dev) and [Go installation](https://github.com/cydriclopez/go-static-server#3-install-go). Please checkout the previous tutorials that cover these topics.
 
-### 4. Clone this repo
+### 4. Clone this repo and run "npm install"
 
-#### 4.1 You can follow the commands below. You may have to vary according to your directory structure.
+#### 4.1 Clone this repo then change into the repo folder to run "npm install".
+
+You can follow the commands below. You may have to adjust according to your own chosen directory structure.
 
 ```bash
 user1@penguin:~/Projects$
 :git clone https://github.com/cydriclopez/go-post-json-passthru.git
 
 user1@penguin:~/Projects$
-:cd go-post-json-passthru
+:cd go-post-json-passthru/src/client
 
-user1@penguin:~/Projects/go-post-json-passthru$
-:
+user1@penguin:~/Projects/go-post-json-passthru/src/client$
+:pwd
+/home/node/ng/go-post-json-passthru/src/client
 ```
 
+#### 4.2 Modify your ***~/.bashrc*** file
+
+You will have to alter the ***alias angular*** command in your ***~/.bashrc*** accordingly by adding another ***-v*** volume mapping. <ins>**Substitute your own path here.**</ins> However try maintain the container mapping into the ***:/home/node/ng/go-post-json-passthru*** folder.
+
+```bash
+# Setup Docker Angular working environment
+alias angular='docker run -it --rm \
+-p 4200:4200 -p 9876:9876 \
+-v /home/user1/Projects/ng:/home/node/ng \
+-v /home/user1/Projects/go-post-json-passthru/src/client\
+:/home/node/ng/go-post-json-passthru \
+-w /home/node/ng angular /bin/sh'
+```
+
+Reload the ***~/.bashrc*** file using the command: ***source ~/.bashrc***.
+
+```bash
+:source ~/.bashrc
+```
+
+#### 4.3 Run the ***Angular*** alias
+
+Follow the commands below to run the ***angular*** alias. The prompt should change the accordingly to notify you that you are in the Angular docker container.
+
+```bash
+user1@penguin:~/Projects/go-post-json-passthru$
+:pwd
+/home/user1/Projects/go-post-json-passthru
+
+user1@penguin:~/Projects/go-post-json-passthru$
+:angular
+
+# Here you are now in the Angular docker container
+/home/node/ng # ls -l
+drwxr-xr-x    1 node     node           272 Aug  7 04:38 go-post-json-passthru
+drwxr-xr-x    1 node     node           248 Jul 28 23:41 treemodule-json
+
+/home/node/ng # cd go-post-json-passthru
+
+/home/node/ng/go-post-json-passthru #
+```
+
+#### 4.4 Run "npm install"
+
+Run ***npm install*** to install Angular and all requirements in ***node_modules*** folder.
+
+```bash
+/home/node/ng/go-post-json-passthru # npm install
+...
+[truncated Angular messages]
+...
+/home/node/ng/go-post-json-passthru #
+
+```
+
+#### 4.5 Run "ng build --watch"
+
+Run "ng build --watch" to generate JavaScript static code in folder ***dist/project_name***. This is the folder we will host in our ***webserv*** Go server-side app.
+
+```bash
+/home/node/ng/go-post-json-passthru # ng build --watch
+
+✔ Browser application bundle generation complete.
+✔ Index html generation complete.
+
+Initial Chunk Files | Names         |      Size
+vendor.js           | vendor        |   3.61 MB
+styles.css          | styles        | 241.78 kB
+polyfills.js        | polyfills     | 216.88 kB
+main.js             | main          |  60.28 kB
+runtime.js          | runtime       |   6.40 kB
+
+                    | Initial Total |   4.12 MB
+
+Build at: 2022-08-10T21:07:52.958Z - Hash: ad769f193a142bd6 - Time: 9360ms
+```
+
+At this point the folder ***src/client/dist/primeng-quickstart-cli*** is ready for serving in our Go server-side app.
+
+### 5. Compile Go server-side code
 
 
+### 6. Client-side Angular code
 
-### 5. Client-side Angular code
-### 6. Server-side Go code
-### 7. Conclusion
+### Table 1. Your host pc to Docker mappings table
+|    | Your host pc | Docker |
+| ----------- | --- | ----------- |
+| postgresql port (-p) | 5432 | 5432 |
+| docker volume (--mount) | postgres_volume | /var/lib/postgresql/data |
+| volume mapping (-v) | /home/$USER/Projects/psql | /home/psql |
+| working folder (-w) | (/home/$USER/Projects/psql) | /home/psql |
+| environment variable (-e) |    | POSTGRES_PASSWORD=<br/>"my-postgres-password" |
+| run docker image |    | postgres |
+
+
+### 7. Server-side Go code
+### 8. Conclusion
 
 Please pardon my mess. Work in progress! 😊
+
+<p align="center">&lt;&lt;&nbsp;[Previous]()&nbsp;&nbsp;&lt;&nbsp;[Main](https://github.com/cydriclopez)&nbsp;&gt;&nbsp;&nbsp;[Next]()&nbsp;&gt;&gt;</p>
+
+qqq [Main](https://github.com/cydriclopez)
