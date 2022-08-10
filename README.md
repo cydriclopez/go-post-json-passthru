@@ -64,4 +64,3 @@ user1@penguin:~/Projects/go-post-json-passthru$
 ### 7. Conclusion
 
 Please pardon my mess. Work in progress! 😊
-<p align="center">&lt;&lt;&nbsp;[Previous]()&nbsp;&nbsp;&lt;&nbsp;[Main](https://github.com/cydriclopez)&nbsp;&gt;&nbsp;&nbsp;[Next]()&nbsp;&gt;&gt;</span>
