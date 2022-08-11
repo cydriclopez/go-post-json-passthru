@@ -31,6 +31,7 @@ func TData() *tData {
 	return t
 }
 
+// Controller for url "/api/postjsonstring"
 func (t *tData) PostJsonData(w http.ResponseWriter, r *http.Request) {
 	if r.Method == http.MethodPost {
 
@@ -49,7 +50,7 @@ func (t *tData) PostJsonData(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 
-		// Save json in db
+		// Save json data to db
 		t.saveJsonData()
 
 		jsonResponse(w, http.StatusOK, "Success")
@@ -60,6 +61,7 @@ func (t *tData) PostJsonData(w http.ResponseWriter, r *http.Request) {
 	http.NotFound(w, r)
 }
 
+// Save json data to db
 func (t *tData) saveJsonData() {
 	// For now we will just print the data from the client
 	log.Println("jsonData:", t.Jdata)

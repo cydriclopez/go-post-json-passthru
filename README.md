@@ -44,7 +44,7 @@ I assume that you have a [working Angular](https://github.com/cydriclopez/docker
 
 ### 4. Clone this repo and run "npm install"
 
-#### 4.1 Clone this repo then change into the repo folder.
+#### 4.1. Clone this repo then change into the repo folder.
 
 You can follow the commands below. You may have to adjust according to your own chosen directory structure.
 
@@ -60,7 +60,7 @@ user1@penguin:~/Projects/go-post-json-passthru/src/client$
 /home/node/ng/go-post-json-passthru/src/client
 ```
 
-#### 4.2 Modify your ***~/.bashrc*** file
+#### 4.2. Modify your ***~/.bashrc*** file
 
 You will have to alter the ***alias angular*** command in your ***~/.bashrc*** accordingly by adding another ***-v*** volume mapping. <ins>**Substitute your own path here.**</ins> However try maintain the container mapping into the ***:/home/node/ng/go-post-json-passthru*** folder.
 
@@ -80,7 +80,7 @@ Reload the ***~/.bashrc*** file using the command: ***source ~/.bashrc***.
 :source ~/.bashrc
 ```
 
-#### 4.3 Run the ***Angular*** alias
+#### 4.3. Run the ***Angular*** alias
 
 Follow the commands below to run the ***angular*** alias. The prompt should change accordingly to notify you that you are in the Angular docker container.
 
@@ -102,7 +102,7 @@ drwxr-xr-x    1 node     node           248 Jul 28 23:41 treemodule-json
 /home/node/ng/go-post-json-passthru #
 ```
 
-#### 4.4 Run "npm install"
+#### 4.4. Run "npm install"
 
 Run ***npm install*** to install Angular and all requirements in ***node_modules*** folder.
 
@@ -115,7 +115,7 @@ Run ***npm install*** to install Angular and all requirements in ***node_modules
 
 ```
 
-#### 4.5 Run "ng build --watch"
+#### 4.5. Run "ng build --watch"
 
 Run "ng build --watch" to generate JavaScript static code in folder ***dist/project_name***. This is the folder we will host in our ***webserv*** Go server-side app.
 
@@ -139,9 +139,9 @@ Build at: 2022-08-10T21:07:52.958Z - Hash: ad769f193a142bd6 - Time: 9360ms
 
 At this point Angular has "compiled" our client-side web app. The static files that Angular generated into the folder ***src/client/dist/primeng-quickstart-cli*** is ready for serving by our Go server-side app.
 
-### 5. Compile Go server-side code
+### 5. Compile and run Go server code
 
-#### 5.1 Change directory into the Go server-side code
+#### 5.1. Change directory into the Go server code
 
 Here we will compile our Go server-side app. Here we will need to open another terminal tab where we can run our Go compiler. You can follow the steps here to [install the Go language compiler](https://github.com/cydriclopez/go-static-server#3-install-go).
 
@@ -174,7 +174,7 @@ user1@penguin:~/Projects/github/go-post-json-passthru/src/server$
 :
 ```
 
-#### 5.2 Run our Go server app
+#### 5.2. Run our Go server app
 
 The above command ***go install*** read our ***webserv*** web server app, compiled it, then generated the executable in the folder ***~/go/bin***.
 
@@ -220,6 +220,45 @@ As mentioned earlier, this is now our ***Tree demo*** app. Note that we have ena
 <kbd><img src="images/primeng-tree-demo2.png" width="650"/></kbd>
 
 ### 6. Client-side Angular code
+
+A key part of connecting the Angular client-side data, to the Go server-side controller, is for the data-structures to match. We are passing JSON as string from the Angular client to the Go server controller.
+
+#### 6.1. Data-structure match
+
+The TypeScript class ***NodeService*** is defined in file ***src/client/src/app/services/nodeservice.ts***. In this file we define the Angular interface to match the Go server-side struct definition (i.e. the following table).
+
+Note that we are not passing JSON structures from the client to the Go controller. Our goal is for the Go controller to be a "passthru" controller which will call a Postgresql stored-function to validate and process our JSON data.
+
+#### Table 6.1. Data-structure match between Angular and Go
+|    | Angular interface | Go struct |
+| ----------- | --- | ----------- |
+|   |export interface JsonData {|type JsonData struct {|
+|   |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;data:   string;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Data string \`json:"data"\`|
+|   |{    |{    |
+
+```typescript
+postJsonString() {
+    // First recourse thru JSON data to save toexpand = expanded
+    this.treeNodes.forEach(node => {
+        this.saveToexpand(node);
+    });
+
+    // The JSON.stringify replacer array parameter will flatten the json
+    // to prevent circular references. Fields 'key', 'parent', and 'leaf'
+    // are filtered-out and inferred from the json structure. PostgreSQL
+    // can traverse thru the json and fill-in these fields from the structure.
+    const json = JSON.stringify(this.treeNodes,
+        [
+            'label', 'icon', 'expandedIcon', 'collapsedIcon',
+            'data', 'children', 'toexpand', 'group_id'
+        ]
+    );
+
+    const jsonData: JsonData = { data: json }
+    this.http.post<any>('/api/postjsonstring', jsonData, httpOptions)
+        .subscribe();
+}
+```
 
 
 ### 7. Server-side Go code
