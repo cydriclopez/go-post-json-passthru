@@ -18,7 +18,7 @@
 
 Oftentimes in our Angular web app we need to push JSON data to the server. Working with a tree data-structure can be a bit tricky. In this tutorial we will work with a tree component and send its JSON data to the server.
 
-This tutorial builds from the previous tutorials. It is good to go thru them in sequence especially if you are new to Angular, Postgresql, and the Go programming language.
+This tutorial builds on the previous tutorials. It is good to go thru the previous tutorials in sequence especially if you are new to Angular, Postgresql, and the Go programming language.
 
 In the current iteration of this code, the tree component gets its data from a static file [src/client/src/assets/data/files.json](https://github.com/cydriclopez/go-post-json-passthru/blob/main/src/client/src/assets/data/files.json). Our goal, in this tutorial, is to push this data to a Go controller which, for now, merely prints the JSON data.
 
@@ -38,7 +38,7 @@ Postgresql JSON processing can infer the row parent-child relationships from the
 
 ### 3. Prerequisites
 
-As mentioned before, this tutorial builds from the previous tutorials. I suggest you go thru them in sequence especially if you are new to Angular and the Go programming language.
+As mentioned before, this tutorial builds on the previous tutorials. I suggest you go thru them in sequence especially if you are new to Angular and the Go programming language.
 
 I assume that you have a [working Angular](https://github.com/cydriclopez/docker-ng-dev) and [Go installation](https://github.com/cydriclopez/go-static-server#3-install-go). Please checkout the previous tutorials that cover these topics.
 
