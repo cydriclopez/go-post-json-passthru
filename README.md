@@ -52,9 +52,11 @@ You can follow the commands below. You may have to adjust according to your own 
 user1@penguin:~/Projects$
 :git clone https://github.com/cydriclopez/go-post-json-passthru.git
 
+# Change folder into the Angular client app
 user1@penguin:~/Projects$
 :cd go-post-json-passthru/src/client
 
+# Use the pwd output in your ~/.bashrc angular alias
 user1@penguin:~/Projects/go-post-json-passthru/src/client$
 :pwd
 /home/node/ng/go-post-json-passthru/src/client
