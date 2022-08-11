@@ -151,6 +151,7 @@ With an installed Go compiler we can change directory into the Go server-side co
 user1@penguin:~/Projects/github/go-post-json-passthru$
 :cd src/server
 
+# List files in the folder
 user1@penguin:~/Projects/github/go-post-json-passthru/src/server$
 :ll
 
@@ -160,9 +161,11 @@ drwxr-xr-x 1 user1 user1   18 Aug  2 13:24 params
 drwxr-xr-x 1 user1 user1   22 Jul 31 12:16 treedata
 -rw-r--r-- 1 user1 user1 1254 Aug  9 22:14 webserv.go
 
+# Compile Go source code in the current folder
 user1@penguin:~/Projects/github/go-post-json-passthru/src/server$
 :go install
 
+# Locate where is our executable
 user1@penguin:~/Projects/github/go-post-json-passthru/src/server$
 :which webserv
 /home/user1/go/bin/webserv
@@ -171,13 +174,13 @@ user1@penguin:~/Projects/github/go-post-json-passthru/src/server$
 :
 ```
 
-#### 5.2 Run our Go server-side web app server
+#### 5.2 Run our Go server app
 
 The above command ***go install*** read our ***webserv*** web server app, compiled it, then generated the executable in the folder ***~/go/bin***.
 
 Make sure that the folder ***~/go/bin*** is in your path as [instructed here](https://github.com/cydriclopez/go-static-server#34-update-your-path). This is the default path where the Go compiler saves the executables generated from compiling your source code.
 
-It used to be that Go required the setting of the ***GOPATH*** environment variable to function properly. This is not anymore the case with the new Go module system. The file ***go.mod*** tags the folder as a module which is a collection of related packages.
+It used to be that Go required the setting of the ***GOPATH*** environment variable to function properly. This is not anymore the case with the new Go module system. The file ***go.mod*** tags the folder as a module which is a collection of related packages/folders.
 
 When running ***webserv*** we feed it the relative folder ***../client/dist/primeng-quickstart-cli*** which is the location of the Angular compiled static files. The default port is :3000.
 
@@ -196,5 +199,6 @@ Press Ctrl-C to stop server
 ### 7. Server-side Go code
 ### 8. Conclusion
 
-Please pardon my mess. Work in progress! 😊
 ---
+
+Please pardon my mess. Work in progress! 😊
