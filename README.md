@@ -328,7 +328,9 @@ In this tutorial we have covered the following.
 7. Server-side Go code
 8. Conclusion
 
-As you can see it is quite simple to create a passthru Go controller for our Angular JSON data. The next tutorial is quite fun. It is where we will pick-apart the JSON data and save them as records.
+As you can see it is quite simple to create a passthru Go controller for our Angular JSON data. The next tutorial is quite fun. Postgresql is a fun database to work with. It is where we will pick-apart the JSON data and save them as records in Postgresql.
+
+I know storing JSON is en vogue these days, with NoSQL databases, but the classic usual records in tables format still has its place. I like to push and grab data from Postgresql in JSON format but still storing them in plain records in tables format.
 
 Happy coding! 😊
 
