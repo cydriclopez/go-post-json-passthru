@@ -78,7 +78,11 @@ export class NodeService {
     }
 
     postJsonString() {
-        // First recourse thru JSON data to save toexpand = expanded
+        // First recourse thru JSON data to save toexpand = expanded.
+        // The field expanded is a Primeng tree component switch that
+        // we cannot persist to the db. We need the toexpand field
+        // for that purpose. It's why we extended TreeNode with:
+        //    export interface TreeNode2 extends TreeNode { }
         this.treeNodes.forEach(node => {
             this.saveToexpand(node);
         });

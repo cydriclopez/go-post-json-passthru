@@ -236,9 +236,15 @@ Note that we are not passing JSON structures from the client to the Go controlle
 |   |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;data:   string;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Data string \`json:"data"\`|
 |   |{    |{    |
 
+The TypeScript function below is quite self-explanatory. Before we can send our JSON data from the Primeng tree component we must JSON.stringify with a replacer array parameter to flatten the JSON to prevent circular references.
+
 ```typescript
 postJsonString() {
-    // First recourse thru JSON data to save toexpand = expanded
+    // First recourse thru JSON data to save toexpand = expanded.
+    // The field expanded is a Primeng tree component switch that
+    // we cannot persist to the db. We need the toexpand field
+    // for that purpose. It's why we extended TreeNode with:
+    //    export interface TreeNode2 extends TreeNode { }
     this.treeNodes.forEach(node => {
         this.saveToexpand(node);
     });
