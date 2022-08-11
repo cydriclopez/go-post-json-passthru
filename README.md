@@ -182,11 +182,34 @@ Make sure that the folder ***~/go/bin*** is in your path as [instructed here](ht
 
 It used to be that Go required the setting of the ***GOPATH*** environment variable to function properly. This is not anymore the case with the new Go module system. The file ***go.mod*** tags the folder as a module which is a collection of related packages/folders.
 
-When running ***webserv*** we feed it the relative folder ***../client/dist/primeng-quickstart-cli*** which is the location of the Angular compiled static files. The default port is :3000.
+Here is running our ***webserv*** app without parameters.
+
+```bash
+user1@penguin:~/Projects/github/go-post-json-passthru/src/server$
+:webserv
+
+2022/08/10 20:23:36
+Simple static server of Angular compiled dist/project folder.
+Run "ng build --watch" then in another terminal
+use dist/project folder as parameter for this utility.
+Usage:
+webserv STATIC_FOLDER_TO_SERVE [PORT]
+Default port: 3000
+Examples:
+webserv .
+webserv ~/Projects/ng/ultima12/dist/ultima
+webserv ~/Projects/ng/ultima12/dist/ultima 4000
+
+user1@penguin:~/Projects/github/go-post-json-passthru/src/server$
+:
+```
+
+Here we run ***webserv*** and we feed it the relative folder ***../client/dist/primeng-quickstart-cli*** which is the location of the Angular compiled static files. The default port is :3000.
 
 ```bash
 user1@penguin:~/Projects/github/go-post-json-passthru/src/server$
 :webserv ../client/dist/primeng-quickstart-cli
+
 2022/08/10 19:06:07
 Serving static folder: ../client/dist/primeng-quickstart-cli
 Listening on port: :3000
