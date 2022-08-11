@@ -216,6 +216,9 @@ Listening on port: :3000
 Press Ctrl-C to stop server
 ```
 
+As mentioned earlier, this is now our ***Tree demo*** app. Note that we have enabled the ***Save*** button. This ***Save*** button sends the tree JSON data to our server-side Go controller that for now just prints it on the console.<br/>
+<kbd><img src="images/primeng-tree-demo2.png" width="650"/></kbd>
+
 ### 6. Client-side Angular code
 
 
