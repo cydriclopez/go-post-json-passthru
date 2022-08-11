@@ -302,14 +302,16 @@ Try click on the ***Save*** button and notice in our Go server app console the J
 
 Below is our Go server app in action. When you click on the ***Save*** button the JSON data is printed on the console. In the next tutorial we will focus on the Postgresql stored-function to pick-apart the JSON data and save them as records.
 
+```bash
+user1@penguin:~/Projects/github/go-post-json-passthru/src/server$
+:webserv ../client/dist/primeng-quickstart-cli
+
+2022/08/10 22:31:37
+Serving static folder: ../client/dist/primeng-quickstart-cli
+Listening on port: :3000
+Press Ctrl-C to stop server
+```
 <code>
-user1@penguin:~/Projects/github/go-post-json-passthru/src/server$<br/>
-:webserv ../client/dist/primeng-quickstart-cli<br/>
-<br/>
-2022/08/10 22:31:37<br/>
-Serving static folder: ../client/dist/primeng-quickstart-cli<br/>
-Listening on port: :3000<br/>
-Press Ctrl-C to stop server<br/>
 2022/08/10 22:31:49 jsonData: {[{"label":"Documents","expandedIcon":"pi pi-folder-open","collapsedIcon":"pi pi-folder","data":"Documents Folder","children":[{"label":"Work","expandedIcon":"pi pi-folder-open","collapsedIcon":"pi pi-folder","data":"Work Folder","children":[{"label":"Expenses.doc","icon":"pi pi-file","data":"Expenses Document"},{"label":"Resume.doc","icon":"pi pi-file","data":"Resume Document"}]},{"label":"Home","expandedIcon":"pi pi-folder-open","collapsedIcon":"pi pi-folder","data":"Home Folder","children":[{"label":"Invoices.txt","icon":"pi pi-file","data":"Invoices for this month"}]}],"toexpand":true},{"label":"Pictures","expandedIcon":"pi pi-folder-open","collapsedIcon":"pi pi-folder","data":"Pictures Folder","children":[{"label":"barcelona.jpg","icon":"pi pi-image","data":"Barcelona Photo"},{"label":"logo.jpg","icon":"pi pi-image","data":"PrimeFaces Logo"},{"label":"primeui.png","icon":"pi pi-image","data":"PrimeUI Logo"}],"toexpand":true},{"label":"Movies","expandedIcon":"pi pi-folder-open","collapsedIcon":"pi pi-folder","data":"Movies Folder","children":[{"label":"Al Pacino","data":"Pacino Movies","children":[{"label":"Scarface","icon":"pi pi-video","data":"Scarface Movie"},{"label":"Serpico","icon":"pi pi-video","data":"Serpico Movie"}]},{"label":"Robert De Niro","data":"De Niro Movies","children":[{"label":"Goodfellas","icon":"pi pi-video","data":"Goodfellas Movie"},{"label":"Untouchables","icon":"pi pi-video","data":"Untouchables Movie"}]}]}]}
 </code>
 
