@@ -236,7 +236,9 @@ Note that we are not passing JSON structures from the client to the Go controlle
 |   |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;data:   string;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Data string \`json:"data"\`|
 |   |{    |{    |
 
-The TypeScript function below is quite self-explanatory. Before we can send our JSON data from the Primeng tree component we must JSON.stringify with a replacer array parameter to flatten the JSON to prevent circular references.
+#### 6.2. TypeScript function postJsonString()
+
+The TypeScript function ***postJsonString()*** below is quite self-explanatory. Before we can send our JSON data from the Primeng tree component we must JSON.stringify with a replacer array parameter to flatten the JSON to prevent circular references.
 
 ```typescript
 postJsonString() {
