@@ -227,7 +227,7 @@ A key part of connecting the Angular client-side data, to the Go server-side con
 
 The TypeScript class ***NodeService*** is defined in file ***src/client/src/app/services/nodeservice.ts***. In this file we define the Angular interface to match the Go server-side struct definition (i.e. the following table).
 
-Note that we are not passing JSON structures from the client to the Go controller. Our goal is for the Go controller to be a "passthru" controller which will call a Postgresql stored-function to validate and process our JSON data.
+Note that we are not passing JSON structures from the client to the Go controller. We are passing JSON as string from the Angular client to our Go server controller. Our goal is for the Go controller to be a "passthru" controller which will call a Postgresql stored-function to validate and process our JSON data.
 
 #### Table 6.1. Data-structure match between Angular and Go
 |    | Angular interface | Go struct |
@@ -268,10 +268,67 @@ postJsonString() {
 }
 ```
 
-
 ### 7. Server-side Go code
+
+#### 7.1. Go server app in 3 packages
+
+The Go server-side code is really basic. We have refactored the [previous tutorial's code](https://github.com/cydriclopez/go-static-server/blob/main/src/server/stic.go) into 3 packages.
+
+| package   | file | purpose |
+| ----------- | --- | ----------- |
+| main | src/server/webserv.go | main "webserv" executable  |
+| params | src/server/params/params.go | process the command-line args |
+| treedata | src/server/treedata/treedata.go | process the tree JSON data |
+
+#### 7.2. Method saveJsonData() to save data
+
+Here instead of saving our data into Postgresql we merely print it. In the next tutorial we will focus on the Postgresql stored-function to pick-apart the JSON data and save them as records.
+
+```go
+// Save json data to db
+func (t *tData) saveJsonData() {
+	// For now we will just print the data from the client
+	log.Println("jsonData:", t.Jdata)
+}
+```
+
+#### 7.3. Our app in action
+
+As mentioned earlier, this is now our ***Tree demo*** app. Note that we have enabled the ***Save*** button. This ***Save*** button sends the tree JSON data to our server-side Go controller that for now just prints it on the console.
+
+Try click on the ***Save*** button and notice in our Go server app console the JSON data comes across.
+<br/>
+<kbd><img src="images/primeng-tree-demo2.png" width="650"/></kbd>
+
+Below is our Go server app in action. When you click on the ***Save*** button the JSON data is printed on the console. In the next tutorial we will focus on the Postgresql stored-function to pick-apart the JSON data and save them as records.
+
+```bash
+user1@penguin:~/Projects/github/go-post-json-passthru/src/server$
+:webserv ../client/dist/primeng-quickstart-cli
+
+2022/08/10 22:31:37
+Serving static folder: ../client/dist/primeng-quickstart-cli
+Listening on port: :3000
+Press Ctrl-C to stop server
+2022/08/10 22:31:49 jsonData: {[{"label":"Documents","expandedIcon":"pi pi-folder-open","collapsedIcon":"pi pi-folder","data":"Documents Folder","children":[{"label":"Work","expandedIcon":"pi pi-folder-open","collapsedIcon":"pi pi-folder","data":"Work Folder","children":[{"label":"Expenses.doc","icon":"pi pi-file","data":"Expenses Document"},{"label":"Resume.doc","icon":"pi pi-file","data":"Resume Document"}]},{"label":"Home","expandedIcon":"pi pi-folder-open","collapsedIcon":"pi pi-folder","data":"Home Folder","children":[{"label":"Invoices.txt","icon":"pi pi-file","data":"Invoices for this month"}]}],"toexpand":true},{"label":"Pictures","expandedIcon":"pi pi-folder-open","collapsedIcon":"pi pi-folder","data":"Pictures Folder","children":[{"label":"barcelona.jpg","icon":"pi pi-image","data":"Barcelona Photo"},{"label":"logo.jpg","icon":"pi pi-image","data":"PrimeFaces Logo"},{"label":"primeui.png","icon":"pi pi-image","data":"PrimeUI Logo"}],"toexpand":true},{"label":"Movies","expandedIcon":"pi pi-folder-open","collapsedIcon":"pi pi-folder","data":"Movies Folder","children":[{"label":"Al Pacino","data":"Pacino Movies","children":[{"label":"Scarface","icon":"pi pi-video","data":"Scarface Movie"},{"label":"Serpico","icon":"pi pi-video","data":"Serpico Movie"}]},{"label":"Robert De Niro","data":"De Niro Movies","children":[{"label":"Goodfellas","icon":"pi pi-video","data":"Goodfellas Movie"},{"label":"Untouchables","icon":"pi pi-video","data":"Untouchables Movie"}]}]}]}
+
+```
+
 ### 8. Conclusion
 
----
+In this tutorial we have covered the following.
 
-Please pardon my mess. Work in progress! 😊
+1. Introduction
+2. Why passthru controller
+3. Prerequisites
+4. Clone this repo and run "npm install"
+5. Compile Go server-side code
+6. Client-side Angular code
+7. Server-side Go code
+8. Conclusion
+
+As you can see it is quite simple to create a passthru Go controller for our Angular JSON data. The next tutorial is quite fun. It is where we will pick-apart the JSON data and save them as records.
+
+Happy coding! 😊
+
+---
