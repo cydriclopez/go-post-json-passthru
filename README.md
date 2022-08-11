@@ -62,7 +62,7 @@ user1@penguin:~/Projects/go-post-json-passthru/src/client$
 
 #### 4.2. Modify your ***~/.bashrc*** file
 
-You will have to alter the ***alias angular*** command in your ***~/.bashrc*** accordingly by adding another ***-v*** volume mapping. <ins>**Substitute your own path here.**</ins> However try maintain the container mapping into the ***:/home/node/ng/go-post-json-passthru*** folder.
+Note the result of the preceding ***pwd***, print working directory, command. You will have to alter the ***alias angular*** command in your ***~/.bashrc*** accordingly by adding another ***-v*** volume mapping using the ***pwd*** path. <ins>**Substitute your own path here if necessary.**</ins> However try maintain the container mapping into the ***:/home/node/ng/go-post-json-passthru*** folder.
 
 ```bash
 # Setup Docker Angular working environment
