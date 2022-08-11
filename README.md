@@ -276,9 +276,9 @@ The Go server-side code is really basic. We have refactored the [previous tutori
 
 | package   | file | purpose |
 | ----------- | --- | ----------- |
-| main | src/server/webserv.go | main "webserv" executable  |
-| params | src/server/params/params.go | process the command-line args |
-| treedata | src/server/treedata/treedata.go | process the tree JSON data |
+| main | [src/server/webserv.go](https://github.com/cydriclopez/go-post-json-passthru/blob/main/src/server/webserv.go) | main "webserv" executable  |
+| params | [src/server/params/params.go](https://github.com/cydriclopez/go-post-json-passthru/blob/main/src/server/params/params.go) | process the command-line args |
+| treedata | [src/server/treedata/treedata.go](https://github.com/cydriclopez/go-post-json-passthru/blob/main/src/server/treedata/treedata.go) | process the tree JSON data |
 
 #### 7.2. Method saveJsonData() to save data
 
