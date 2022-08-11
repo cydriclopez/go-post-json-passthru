@@ -137,29 +137,64 @@ runtime.js          | runtime       |   6.40 kB
 Build at: 2022-08-10T21:07:52.958Z - Hash: ad769f193a142bd6 - Time: 9360ms
 ```
 
-At this point the folder ***src/client/dist/primeng-quickstart-cli*** is ready for serving in our Go server-side app.
+At this point Angular has "compiled" our client-side web app. The static files that Angular generated into the folder ***src/client/dist/primeng-quickstart-cli*** is ready for serving by our Go server-side app.
 
 ### 5. Compile Go server-side code
 
+#### 5.1 Change directory into the Go server-side code
+
+Here we will compile our Go server-side app. Here we will need to open another terminal tab where we can run our Go compiler. You can follow the steps here to [install the Go language compiler](https://github.com/cydriclopez/go-static-server#3-install-go).
+
+With an installed Go compiler we can change directory into the Go server-side code. Follow the steps below.
+
+```bash
+user1@penguin:~/Projects/github/go-post-json-passthru$
+:cd src/server
+
+user1@penguin:~/Projects/github/go-post-json-passthru/src/server$
+:ll
+
+-rw-r--r-- 1 user1 user1   24 Aug  6 12:22 go.mod
+drwxr-xr-x 1 user1 user1   18 Aug  2 13:24 params
+-rw-r--r-- 1 user1 user1   24 Aug  9 01:56 README.md
+drwxr-xr-x 1 user1 user1   22 Jul 31 12:16 treedata
+-rw-r--r-- 1 user1 user1 1254 Aug  9 22:14 webserv.go
+
+user1@penguin:~/Projects/github/go-post-json-passthru/src/server$
+:go install
+
+user1@penguin:~/Projects/github/go-post-json-passthru/src/server$
+:which webserv
+/home/user1/go/bin/webserv
+
+user1@penguin:~/Projects/github/go-post-json-passthru/src/server$
+:
+```
+
+#### 5.2 Run our Go server-side web app server
+
+The above command ***go install*** read our ***webserv*** web server app, compiled it, then generated the executable in the folder ***~/go/bin***.
+
+Make sure that the folder ***~/go/bin*** is in your path as [instructed here](https://github.com/cydriclopez/go-static-server#34-update-your-path). This is the default path where the Go compiler saves the executables generated from compiling your source code.
+
+It used to be that Go required the setting of the ***GOPATH*** environment variable to function properly. This is not anymore the case with the new Go module system. The file ***go.mod*** tags the folder as a module which is a collection of related packages.
+
+When running ***webserv*** we feed it the relative folder ***../client/dist/primeng-quickstart-cli*** which is the location of the Angular compiled static files. The default port is :3000.
+
+```bash
+user1@penguin:~/Projects/github/go-post-json-passthru/src/server$
+:webserv ../client/dist/primeng-quickstart-cli
+2022/08/10 19:06:07
+Serving static folder: ../client/dist/primeng-quickstart-cli
+Listening on port: :3000
+Press Ctrl-C to stop server
+```
 
 ### 6. Client-side Angular code
-
-### Table 1. Your host pc to Docker mappings table
-|    | Your host pc | Docker |
-| ----------- | --- | ----------- |
-| postgresql port (-p) | 5432 | 5432 |
-| docker volume (--mount) | postgres_volume | /var/lib/postgresql/data |
-| volume mapping (-v) | /home/$USER/Projects/psql | /home/psql |
-| working folder (-w) | (/home/$USER/Projects/psql) | /home/psql |
-| environment variable (-e) |    | POSTGRES_PASSWORD=<br/>"my-postgres-password" |
-| run docker image |    | postgres |
 
 
 ### 7. Server-side Go code
 ### 8. Conclusion
 
 Please pardon my mess. Work in progress! 😊
-
-<p align="center">&lt;&lt;&nbsp;[Previous]()&nbsp;&nbsp;&lt;&nbsp;[Main](https://github.com/cydriclopez)&nbsp;&gt;&nbsp;&nbsp;[Next]()&nbsp;&gt;&gt;</p>
-
-qqq [Main](https://github.com/cydriclopez)
+---
