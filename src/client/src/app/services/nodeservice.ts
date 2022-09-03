@@ -98,7 +98,7 @@ export class NodeService {
             ]
         );
 
-        const jsonData: JsonData = { data: json }
+        const jsonData: JsonData = { data: json };
         this.http.post<any>('/api/postjsonstring', jsonData, httpOptions)
             .subscribe();
     }
