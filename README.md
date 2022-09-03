@@ -2,7 +2,7 @@
 
 ## Go POST JSON passthru controller
 
-> ***This tutorial requires some knowledge in Linux, Angular, and Go Programming Language.***
+> ***This tutorial requires some knowledge in Linux, Docker, Angular, and Go Programming Language.***
 
 ### Table of Contents
 1. Introduction
